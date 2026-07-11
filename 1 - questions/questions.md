@@ -4,15 +4,18 @@
 
 ----
 
-1 What is tokenization? Give an example — show how the sentence "I'm learning NLP in 2025!" would be tokenized. Expected: a list of tokens and a one-sentence explanation of what tokenization does and why it's the first step in NLP.
+## 1
+
+What is tokenization? Give an example — show how the sentence "I'm learning NLP in 2025!" would be tokenized. Expected: a list of tokens and a one-sentence explanation of what tokenization does and why it's the first step in NLP.
 
 ## Answer:
 
 Tokenization breaks text into smaller pieces such as words, punctuation, or subwords. For example, "I'm learning NLP in 2025!" can be split as ["I", "'m", "learning", "NLP", "in", "2025", "!"]. It comes first because a model needs tokens to work with text instead of raw characters.
 
-2 What is the difference between stemming and lemmatization? Apply both to the words "running" and "better" and explain which preserves more linguistic meaning. Hint: stemming is fast but crude (cuts off suffixes). Lemmatization uses a dictionary to find the base form.
-
 ----
+
+## 2
+What is the difference between stemming and lemmatization? Apply both to the words "running" and "better" and explain which preserves more linguistic meaning. Hint: stemming is fast but crude (cuts off suffixes). Lemmatization uses a dictionary to find the base form.
 
 ## Answer:
 Stemming is a rough shortcut. It chops off endings, so "running" often becomes "run", and "better" may stay as "better". Lemmatization is smarter. It uses word forms and a dictionary, so "running" becomes "run" and "better" becomes "good". That makes lemmatization better at preserving real meaning.
