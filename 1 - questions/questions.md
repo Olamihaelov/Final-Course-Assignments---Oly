@@ -54,7 +54,7 @@ A normal SQL search only matches the exact words it is given. It cannot tell tha
 
 ----
 
-RAG - RETRIEVAL-AUGMENTED GENERATION  Q7-Q8
+> RAG - RETRIEVAL-AUGMENTED GENERATION  Q7-Q8
 
 ## 7
 What problem does RAG solve that a plain LLM (without RAG) cannot? Give a concrete example of when you would choose RAG over just prompting the LLM directly. Think about: knowledge cutoffs, private data, hallucinations, up-to-date information.
@@ -72,7 +72,7 @@ At ingestion time, you split the documents into chunks, turn those chunks into e
 
 ----
 
-DOCKER  +  AI AGENTS  Q9-Q10
+> DOCKER  +  AI AGENTS  Q9-Q10
 
 ## 9
 What is the difference between a Docker image and a Docker container? Use an analogy to explain. Common analogies: class vs instance, recipe vs cake, blueprint vs building. Any analogy that works is fine.
@@ -90,7 +90,7 @@ A simple chatbot mostly just writes text. An agent can also use tools, such as a
 
 ----
 
-MCP & AGENT SKILLS  Q11-Q12
+> MCP & AGENT SKILLS  Q11-Q12
 
 ## 11
 What is MCP (Model Context Protocol)? What problem does it solve for AI coding assistants like GitHub Copilot? Name two examples of things an MCP server might expose to an AI assistant. Think about: how does a language model normally know about your database, your files, or your GitHub issues? What does MCP standardize?
