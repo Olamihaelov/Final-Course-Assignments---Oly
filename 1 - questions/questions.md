@@ -112,7 +112,7 @@ description: Optimize MongoDB queries and recommend indexes for slow aggregation
 file: skills/mongodb-query-optimizer/SKILL.md
 ```
 
-
+```
 <skill>
 	<name>mongodb-query-optimizer</name>
 	<description>Help with MongoDB query optimization and indexing.
@@ -120,3 +120,4 @@ file: skills/mongodb-query-optimizer/SKILL.md
 	or "Why is this query slow?"</description>
 	<file>path/to/skills/mongodb-query-optimizer/SKILL.md</file>
 </skill>
+```
