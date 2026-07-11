@@ -2,9 +2,12 @@
 
 🧠 NLP — NATURAL LANGUAGE PROCESSING  Q1–Q3
 
+----
+
 1 What is tokenization? Give an example — show how the sentence "I'm learning NLP in 2025!" would be tokenized. Expected: a list of tokens and a one-sentence explanation of what tokenization does and why it's the first step in NLP.
 
 ## Answer:
+
 Tokenization breaks text into smaller pieces such as words, punctuation, or subwords. For example, "I'm learning NLP in 2025!" can be split as ["I", "'m", "learning", "NLP", "in", "2025", "!"]. It comes first because a model needs tokens to work with text instead of raw characters.
 
 2 What is the difference between stemming and lemmatization? Apply both to the words "running" and "better" and explain which preserves more linguistic meaning. Hint: stemming is fast but crude (cuts off suffixes). Lemmatization uses a dictionary to find the base form.
@@ -18,8 +21,10 @@ Stemming is a rough shortcut. It chops off endings, so "running" often becomes "
 
 3 What does TF-IDF stand for? Explain in plain language why the word "the" scores almost zero in TF-IDF, while the word "photosynthesis" would score high. Think about: what makes a word useful for identifying a specific document among many documents?
 
-Answer:
+## Answer:
 TF-IDF stands for Term Frequency times Inverse Document Frequency. It gives a word more weight when it appears a lot in one document but not many others. "The" shows up everywhere, so it gets a low score. "Photosynthesis" is rarer and more specific, so it gets a much higher score and helps identify the right document.
+
+----
 
 🗄️ VECTOR DATABASES & EMBEDDINGS  Q4–Q6
 
