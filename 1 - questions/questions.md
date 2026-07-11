@@ -8,10 +8,12 @@
 Tokenization breaks text into smaller pieces such as words, punctuation, or subwords. For example, "I'm learning NLP in 2025!" can be split as ["I", "'m", "learning", "NLP", "in", "2025", "!"]. It comes first because a model needs tokens to work with text instead of raw characters.
 
 2 What is the difference between stemming and lemmatization? Apply both to the words "running" and "better" and explain which preserves more linguistic meaning. Hint: stemming is fast but crude (cuts off suffixes). Lemmatization uses a dictionary to find the base form.
+
 ----
 
 ## Answer:
 Stemming is a rough shortcut. It chops off endings, so "running" often becomes "run", and "better" may stay as "better". Lemmatization is smarter. It uses word forms and a dictionary, so "running" becomes "run" and "better" becomes "good". That makes lemmatization better at preserving real meaning.
+
 ----
 
 3 What does TF-IDF stand for? Explain in plain language why the word "the" scores almost zero in TF-IDF, while the word "photosynthesis" would score high. Think about: what makes a word useful for identifying a specific document among many documents?
