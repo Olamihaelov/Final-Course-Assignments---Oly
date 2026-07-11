@@ -1,6 +1,6 @@
 # Theory Questions
 
-# NLP - NATURAL LANGUAGE PROCESSING  Q1-Q3
+> NLP - NATURAL LANGUAGE PROCESSING  Q1-Q3
 
 
 ## 1
@@ -28,7 +28,7 @@ TF-IDF stands for Term Frequency times Inverse Document Frequency. It gives a wo
 
 ----
 
-# VECTOR DATABASES & EMBEDDINGS  Q4-Q6
+> VECTOR DATABASES & EMBEDDINGS  Q4-Q6
 
 ## 4
 What is a sentence embedding? How is it fundamentally different from one-hot encoding? Give one advantage embeddings have that one-hot vectors don't. Think about: what can you measure between two embeddings that you can't measure between two one-hot vectors?
