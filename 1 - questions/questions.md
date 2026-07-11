@@ -1,144 +1,86 @@
-# Q1 __
+# 📝 Theory Questions
 
-Question:
-What is tokenization? Illustrate your answer with an example — how would the sentence "I'm learning NLP in 2025!" be tokenized?
+🧠 NLP — NATURAL LANGUAGE PROCESSING  Q1–Q3
 
-Answer:
-Tokenization refers to splitting text into tokens that are words or subwords that can be processed by the machine learning model. Tokenization is the first step in NLP since raw text cannot be processed by the machine learning model but tokens can.
-
-Example:
-The sentence "I'm learning NLP in 2025!" will be tokenized as follows:
-["I", "'m", "learning", "NLP", "in", "2025", "!"]
----
-
-# Q2 __
-
-Question:
-What is the difference between stemming and lemmatization? Apply both to the words "running" and "better" and explain which preserves more linguistic meaning.
+1 What is tokenization? Give an example — show how the sentence "I'm learning NLP in 2025!" would be tokenized. Expected: a list of tokens and a one-sentence explanation of what tokenization does and why it's the first step in NLP.
 
 Answer:
-By using a set of rules, stemming removes suffixes from words - but lemmatization uses a dictionary to find the root form of a word. Because of this reliance on a dictionary, more information remains intact when a person uses lemmatization. 
+Tokenization breaks text into smaller pieces such as words, punctuation, or subwords. For example, "I'm learning NLP in 2025!" can be split as ["I", "'m", "learning", "NLP", "in", "2025", "!"]. It comes first because a model needs tokens to work with text instead of raw characters.
 
-For "running": stemming results in "run" and lemmatization results in "run".
-And for "better": stemming results in "bet", while lemmatization results in "good".
----
-
-# Q3 __
-
-Question:
-What is the meaning of the abbreviation TF-IDF? For what reason does "the" receive a low numerical weight in the TF-IDF calculation while "photosynthesis" receives a high weight? In your response consider the qualities that enable a word to distinguish one specific document from a collection of documents.
+2 What is the difference between stemming and lemmatization? Apply both to the words "running" and "better" and explain which preserves more linguistic meaning. Hint: stemming is fast but crude (cuts off suffixes). Lemmatization uses a dictionary to find the base form.
 
 Answer:
-TF-IDF is the result when a person multiplies the Term Frequency by the Inverse Document Frequency. As "The" exists in a large portion of the data set, it has a low IDF value - but because "photosynthesis" occurs in only a small number of instances, it has a high IDF value. When terms occur rarely across a collection, they are more effective for the identification of specific texts.
+Stemming is a rough shortcut. It chops off endings, so "running" often becomes "run", and "better" may stay as "better". Lemmatization is smarter. It uses word forms and a dictionary, so "running" becomes "run" and "better" becomes "good". That makes lemmatization better at preserving real meaning.
 
----
-
-# Q4
-
-Question:
-What is a sentence embedding? How is it fundamentally different from one-hot encoding? Give one advantage embeddings have that one-hot vectors don't. Think about: what can you measure between two embeddings that you can't measure between two one-hot vectors?
+3 What does TF-IDF stand for? Explain in plain language why the word "the" scores almost zero in TF-IDF, while the word "photosynthesis" would score high. Think about: what makes a word useful for identifying a specific document among many documents?
 
 Answer:
-Embeddings are dense vectors capturing meaning. One-hot is sparse binary (1 and 0s only). Embeddings let you measure cosine similarity; one-hot vectors always have 0 similarity.
+TF-IDF stands for Term Frequency times Inverse Document Frequency. It gives a word more weight when it appears a lot in one document but not many others. "The" shows up everywhere, so it gets a low score. "Photosynthesis" is rarer and more specific, so it gets a much higher score and helps identify the right document.
 
-Example:
-"cat sleeping" and "dog resting": embeddings cosine ≈ 0.85; one-hot cosine = 0
----
+🗄️ VECTOR DATABASES & EMBEDDINGS  Q4–Q6
 
-# Q5
-
-Question:
-Explain cosine similarity in plain language. If two document vectors point in almost the same direction, what does that tell us about the documents they represent?
+4 What is a sentence embedding? How is it fundamentally different from one-hot encoding? Give one advantage embeddings have that one-hot vectors don't. Think about: what can you measure between two embeddings that you can't measure between two one-hot vectors?
 
 Answer:
-Cosine similarity measures the angle between vectors. Same direction = close to 1 = semantically similar. Euclidean distance is poor because it's affected by vector length, not just direction.
+A sentence embedding is a numeric vector that captures meaning. One-hot encoding is much more basic, because it only marks whether something is present or not. Embeddings are useful because they let you compare meanings, not just check exact matches.
 
----
-
-# Q6 __
-
-Question:
-Why can't a regular SQL query like WHERE description LIKE '%pizza%' find semantically similar documents? What does a vector index solve that SQL can't?
+5 Explain cosine similarity in plain language. If two document vectors point in almost the same direction, what does that tell us about the documents they represent? You don't need to write the formula — a geometric or intuitive explanation is enough. Bonus (+0.5 optional): When might Euclidean distance be a poor choice for comparing embeddings?
 
 Answer:
-A SQL LIKE command searches for exact string of characters but not semantics. Vector indexing refers to the embedding of a process through which a semantic similarity between documents is established even if they do not have identical words.
+Cosine similarity looks at the direction of two vectors. If they point in almost the same direction, the documents are probably about similar ideas. Euclidean distance can be a bad choice when the vectors differ a lot in length, because size can get in the way of the real comparison.
 
-Example:
-search using SQL LIKE '%car%' would not result in the identification of any document having words like "automobile" or "vehicle".
-
----
-
-# Q7 __
-
-Question:
-What problem does RAG solve that a plain LLM (without RAG) cannot? Give a concrete example of when you would choose RAG over just prompting the LLM directly.
+6 Why can't a regular SQL query like `WHERE description LIKE '%pizza%'` find semantically similar documents? What does a vector index solve that SQL can't? Example to think about: "Italian food" and "pasta and risotto" — one contains the word, the other doesn't, but they're about the same topic.
 
 Answer:
-RAG allows an artificial intelligence system to examine specific user files, like PDFs or private documents. If RAG is absent, the system is unable to access those external files and it therefore provides an invented response or states "I don’t know"
+A normal SQL search only matches the exact words it is given. It cannot tell that two different phrases might be talking about the same idea. A vector index solves that by comparing embeddings and finding content with similar meaning, even when the wording is different.
 
-Example - When a user asks about a document that contains a new company policy, RAG is able to process the text to provide an accurate answer - but a standard artificial intelligence system is only able to guess because it lacks access to the data.
----
+📄 RAG — RETRIEVAL-AUGMENTED GENERATION  Q7–Q8
 
-# Q8
-
-Question:
-Describe the 3 main steps of a RAG pipeline in the correct order. Be clear about what happens at ingestion time (when you load documents) vs query time (when a user asks a question).
+7 What problem does RAG solve that a plain LLM (without RAG) cannot? Give a concrete example of when you would choose RAG over just prompting the LLM directly. Think about: knowledge cutoffs, private data, hallucinations, up-to-date information.
 
 Answer:
-Ingestion: chunk documents → create embeddings → store in vector DB. Query: embed user question → retrieve similar docs → send to LLM for answer.
+RAG helps when the model needs real information, not just what it remembers. It gives the model actual documents to read, which is useful for private data, recent facts, or anything that needs to be accurate. A good example is asking about an internal company policy, where RAG can pull the relevant passage instead of making it up.
 
----
-
-# Q9 __
-
-Question:
-What is the difference between a Docker image and a Docker container? Use an analogy to explain. Common analogies: class vs instance, recipe vs cake, blueprint vs building. Any analogy that works is fine.
-
-Answer
-An image is equivalent to a blueprint, a class or a recipe - A container is a running instance, a constructed house or a finished cake. As a template the image exists in a fixed state. To have a running copy, you must have a container.
-
-Example
-By comparing them, an image is like a recipe card that does not change. Then again a container is the cake that exists because you followed the recipe. If you have one recipe, you are able to create many cakes.
----
-
-# Q10 __
-
-Question:
-What is the difference between a simple LLM chatbot and an AI agent with tools? Give one concrete example of a "tool" and explain why it makes the agent more capable. Think about: what can an agent do that a plain LLM cannot? (e.g., look things up in real-time, run code, query a database, send an email...)
-
-Answer
-The chatbot creates text - the agent triggers functions which are tools to carry out commands. With those tools the agent connects with databases or different systems - using an API.
-
-As an example
-Chatbot: "The weather tomorrow will be fine" Agent with a weather_tool: "Actually checking API.." "Tomorrow will be sunny with temperature 72°F"
----
-
-# Q11 __
-
-Question:
-What is MCP (Model Context Protocol)? What problem does it solve for AI coding assistants like GitHub Copilot? Name two examples of things an MCP server might expose to an AI assistant. Think about: how does a language model normally know about your database, your files, or your GitHub issues? What does MCP standardize?
+8 Describe the 3 main steps of a RAG pipeline in the correct order. Be clear about what happens at ingestion time (when you load documents) vs query time (when a user asks a question). The 3 steps are: chunk → embed → store (ingestion) and embed query → retrieve → generate (query time).
 
 Answer:
-MCP is a standard for connecting AI assistants to external data sources and tools. Solves: LLMs don't know about your private data. MCP allows standardized access to files, databases, GitHub, APIs.
+At ingestion time, you split the documents into chunks, turn those chunks into embeddings, and store them in a vector database. At query time, you embed the question, find the closest chunks, and let the model answer using those chunks as context.
 
-Example:
-MCP servers expose: (1) filesystem access (read your project files), (2) GitHub API (check issues, PRs).
+🐳 DOCKER  +  🤖 AI AGENTS  Q9–Q10
 
----
-
-# Q12 __
-
-Question:
-What are Agent Skills in the context of AI coding assistants? How are they different from just writing instructions in a plain prompt? Show a minimal example of what a skill's `.md` metadata block might look like. Think about: a skill has a name, a description, and a path to a detailed instructions file — it lets the AI decide when to activate domain-specific knowledge automatically.
+9 What is the difference between a Docker image and a Docker container? Use an analogy to explain. Common analogies: class vs instance, recipe vs cake, blueprint vs building. Any analogy that works is fine.
 
 Answer:
-Skills are reusable domain knowledge packages with metadata. AI auto-activates them when relevant (vs. static prompts that always run). Skills have name, description, file path.
+A Docker image is like a recipe or blueprint. It contains the setup for an app. A container is the live thing you run from that recipe, so it is the actual working instance.
 
-Example:
-```xml
-<skill>
-  <name>mongodb-optimizer</name>
-  <description>Help optimize MongoDB queries. Activate when user asks "optimize query"</description>
-  <file>path/to/skills/mongodb/SKILL.md</file>
-</skill>
+10 What is the difference between a simple LLM chatbot and an AI agent with tools? Give one concrete example of a "tool" and explain why it makes the agent more capable. Think about: what can an agent do that a plain LLM cannot? (e.g., look things up in real-time, run code, query a database, send an email...)
+
+Answer:
+A simple chatbot mostly just writes text. An agent can also use tools, such as a web search or a calculator, to get live information and do real actions. That makes it much more useful than a chatbot that only talks.
+
+🔌 MCP & AGENT SKILLS  Q11–Q12
+
+11 What is MCP (Model Context Protocol)? What problem does it solve for AI coding assistants like GitHub Copilot? Name two examples of things an MCP server might expose to an AI assistant. Think about: how does a language model normally know about your database, your files, or your GitHub issues? What does MCP standardize?
+
+Answer:
+MCP is a standard for giving AI assistants access to outside tools and data. It solves the problem of models not knowing how to connect to files, databases, or GitHub in a consistent way. Two examples are a file server and a database query server.
+
+12 What are Agent Skills in the context of AI coding assistants? How are they different from just writing instructions in a plain prompt? Show a minimal example of what a skill's `.md` metadata block might look like. Think about: a skill has a name, a description, and a path to a detailed instructions file — it lets the AI decide when to activate domain-specific knowledge automatically.
+
+Answer:
+Agent Skills are reusable pieces of guidance that help an assistant know when to use a certain capability. They are more structured than a plain prompt, so the assistant can choose the right behavior automatically. A simple example looks like this:
+
 ```
+name: mongodb-query-optimizer
+description: Optimize MongoDB queries and recommend indexes for slow aggregations.
+file: skills/mongodb-query-optimizer/SKILL.md
+```
+
+# Example skill metadata in copilot-instructions.md
+<skill>
+	<name>mongodb-query-optimizer</name>
+	<description>Help with MongoDB query optimization and indexing.
+	Use when the user asks "How do I optimize this query?"
+	or "Why is this query slow?"</description>
+	<file>path/to/skills/mongodb-query-optimizer/SKILL.md</file>
+</skill>
