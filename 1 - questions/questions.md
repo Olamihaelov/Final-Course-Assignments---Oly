@@ -107,17 +107,17 @@ What are Agent Skills in the context of AI coding assistants? How are they diffe
 Agent Skills are reusable pieces of guidance that help an assistant know when to use a certain capability. They are more structured than a plain prompt, so the assistant can choose the right behavior automatically. A simple example looks like this:
 
 ```
-name: mongodb-query-optimizer
-description: Optimize MongoDB queries and recommend indexes for slow aggregations.
-file: skills/mongodb-query-optimizer/SKILL.md
+name: pet-store-assistant
+description: Help with pet store inventory, orders, and customer support questions.
+file: skills/pet-store-assistant/SKILL.md
 ```
 
 ```
 <skill>
-	<name>mongodb-query-optimizer</name>
-	<description>Help with MongoDB query optimization and indexing.
-	Use when the user asks "How do I optimize this query?"
-	or "Why is this query slow?"</description>
-	<file>path/to/skills/mongodb-query-optimizer/SKILL.md</file>
+	<name>pet-store-assistant</name>
+	<description>Help with pet store inventory, orders, and customer support questions.
+	Use when the user asks "How do I check stock?"
+	or "What is the status of this order?"</description>
+	<file>path/to/skills/pet-store-assistant/SKILL.md</file>
 </skill>
 ```
