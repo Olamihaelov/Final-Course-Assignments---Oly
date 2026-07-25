@@ -80,8 +80,15 @@ This works well because cosine focuses on direction, rather than the raw length 
 
 ### 6 - Why can't a regular SQL query `like WHERE description LIKE '%pizza%'` find semantically similar documents? What does a vector index solve that SQL can't?
 
-## Answer:_____
-A normal SQL search only matches the exact words it is given. It cannot tell that two different phrases might be talking about the same idea. A vector index solves that by comparing embeddings and finding content with similar meaning, even when the wording is different.
+## Answer:
+
+A SQL query like `WHERE description LIKE '%pizza%'` looks for exact words only.
+It doesn’t understand meaning, so it can miss related texts that use different wording.
+
+Vector indexing works differently: it turns text into vectors that represent meaning,
+and then compares vectors by semantic similarity.
+
+So basically, SQL matches words, while vector indexing matches meaning.
 
 ----
 
