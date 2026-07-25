@@ -89,8 +89,13 @@ A normal SQL search only matches the exact words it is given. It cannot tell tha
 
 ### 7 - What problem does RAG solve that a plain LLM (without RAG) cannot? Give a concrete example of when you would choose RAG over just prompting the LLM directly.
 
-## Answer:_____
-RAG helps when the model needs real information, not just what it remembers. It gives the model actual documents to read, which is useful for private data, recent facts, or anything that needs to be accurate. A good example is asking about an internal company policy, where RAG can pull the relevant passage instead of making it up.
+## Answer:
+
+RAG helps when a normal LLM is not enough, especially with private or new information.
+
+The idea is simple: first bring the relevant information, then give it to the model, and only after that the model answers.
+
+Because of that, the answer is usually more accurate and there are fewer hallucinations.
 
 ----
 
