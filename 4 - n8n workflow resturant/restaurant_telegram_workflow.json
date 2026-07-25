@@ -1,0 +1,204 @@
+{
+  "name": "Restaurant Webhook - reservation/cancellation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "restaurant",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "5915b508-ef0f-4617-a845-ff97934ce44c",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -736,
+        64
+      ],
+      "webhookId": "restaurant"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-event",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "reservation",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "2eb566f1-48d2-4b7b-b0fc-ecb2e094e755",
+      "name": "IF Event",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -496,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  \"status\": \"ok\",\n  \"message\": \"Reservation received\",\n  \"id\": $json.body.id\n} }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "40760e25-e5b4-46f0-ada0-ecbc01a672da",
+      "name": "Respond Reservation",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        -128
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ {\n  \"status\": \"ok\",\n  \"message\": \"Cancellation received\",\n  \"id\": $json.body.id\n} }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "c9a4da71-765a-4c3f-99a3-1af4739af8eb",
+      "name": "Respond Cancellation",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -32,
+        176
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "8856083943",
+        "text": "=✅ New Reservation Received!\n\nName: {{ $json.body.customer_name }}\nDate: {{ $json.body.date }}\nTime: {{ $json.body.time }}\nParty size: {{ $json.body.party_size }}\nBooking ID: {{ $json.body.id }}\nContact: {{ $json.body.contact || \"Not provided\" }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -272,
+        -96
+      ],
+      "id": "aa4dfb32-dea4-48bf-8098-36d01c0e64bb",
+      "name": "New Reservation",
+      "webhookId": "585816f7-ccc6-4502-96aa-e78aea145f04",
+      "credentials": {
+        "telegramApi": {
+          "id": "NvOezTqJ2HMhJeFk",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "8856083943",
+        "text": "=❌ Reservation Cancelled\n\nBooking ID: {{ $json.body.id }} has been cancelled.\n\nPlease update the system accordingly.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -256,
+        176
+      ],
+      "id": "acb44e5c-21dd-4f5a-9ec4-ab5703773786",
+      "name": "Cancel Reservation",
+      "webhookId": "585816f7-ccc6-4502-96aa-e78aea145f04",
+      "credentials": {
+        "telegramApi": {
+          "id": "NvOezTqJ2HMhJeFk",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Event": {
+      "main": [
+        [
+          {
+            "node": "New Reservation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cancel Reservation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond Cancellation": {
+      "main": [
+        []
+      ]
+    },
+    "New Reservation": {
+      "main": [
+        [
+          {
+            "node": "Respond Reservation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cancel Reservation": {
+      "main": [
+        [
+          {
+            "node": "Respond Cancellation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "5387f4af-af71-4109-b350-bdcd78f3a24b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4dd753d494c10aee1f51d94a81b047948ba0c4d30c3e6e857d892738b4b86e99"
+  },
+  "id": "btUaTQaTeAgotDgd",
+  "tags": []
+}

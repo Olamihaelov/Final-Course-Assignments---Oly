@@ -30,6 +30,10 @@ class RestaurantChatbot:
         if not self.llm:
             return "general"
 
+        fallback_category = self._fallback_category(question)
+        if fallback_category != "general":
+            return fallback_category
+
         classify_prompt = ChatPromptTemplate.from_messages([
             ("system",
              "You are a router for a restaurant chatbot. "
@@ -44,10 +48,28 @@ class RestaurantChatbot:
         ])
 
         chain = classify_prompt | self.llm | StrOutputParser()
-        result = chain.invoke({"question": question}).strip().lower()
+        try:
+            result = chain.invoke({"question": question}).strip().lower()
+        except Exception as error:
+            print(f"Warning: Intent classification failed: {error}")
+            return fallback_category
         
         valid = {"reservation", "cancellation", "menu", "hours", "general"}
         return result if result in valid else "general"
+
+    @staticmethod
+    def _fallback_category(question: str) -> str:
+        """Classify common requests locally when the LLM is unavailable."""
+        text = question.lower()
+        if any(word in text for word in ("cancel", "cancellation")):
+            return "cancellation"
+        if any(word in text for word in ("reserve", "reservation", "book", "table")):
+            return "reservation"
+        if any(word in text for word in ("menu", "food", "drink", "price")):
+            return "menu"
+        if any(word in text for word in ("hour", "hours", "open", "opening", "location")):
+            return "hours"
+        return "general"
 
     def _handle_reservation(self, question: str) -> str:
         """Extract booking details with LLM, save to DB, notify n8n."""
@@ -65,7 +87,14 @@ class RestaurantChatbot:
             return "Please call us directly to make a reservation!"
 
         chain = extract_prompt | self.llm | StrOutputParser()
-        raw = chain.invoke({"question": question})
+        try:
+            raw = chain.invoke({"question": question})
+        except Exception as error:
+            print(f"Warning: Reservation detail extraction failed: {error}")
+            return (
+                "I need your name, date, time, and party size to book a table. "
+                "Example: 'Table for 2 on Sunday at 7pm, name is Kim'"
+            )
 
         raw = raw.strip()
         if raw.startswith("```json"):
