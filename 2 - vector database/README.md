@@ -71,12 +71,28 @@ python vector_db.py
 
 ## 🔍 Example Queries (Conceptual)
 
-Queries should use concepts rather than copying exact words from the documents, for example:
+Queries use concepts rather than copying exact words from the documents, for example:
 
 - "something fun for an indoor cat"
 - "comfortable bed for an older dog"
 - "food and gear for a small aquarium"
 - "travel carrier for a small pet"
+
+---
+
+## 📸 Output Screenshots
+
+### Query Results with Distances
+
+![Vector DB Query Results 1](https://github.com/user-attachments/assets/ae2a75cb-bfd2-4657-8051-145e394ed85f)
+
+![Vector DB Query Results 2](https://github.com/user-attachments/assets/c24ce2a7-8888-4663-bed0-bc456c865650)
+
+The screenshots show:
+- Multiple semantic queries
+- Top matching documents for each query
+- Metadata for every result
+- Similarity distances (lower = more similar)
 
 ---
 
@@ -115,4 +131,3 @@ The script ends with a short analysis that answers:
 - Lower distance = higher similarity (L2 distance by default)
 - Distance `0.0` = perfect match
 - All processing runs locally – no OpenAI key required
-```
