@@ -136,6 +136,30 @@ What are your opening hours?
 
 ---
 
+## 📸 Screenshots
+
+### Gradio Chat UI – Reservation & Cancellation
+
+![Gradio Reservation](https://github.com/user-attachments/assets/9c0ffac6-b3fe-488c-abae-2420b04bdce1)
+
+![Gradio Cancellation](https://github.com/user-attachments/assets/c9a8f348-a076-4dd6-9d8c-cf5e2f161024)
+
+![Gradio Chat Flow](https://github.com/user-attachments/assets/090ace14-42e0-4203-ba6d-f86421b622f6)
+
+### n8n Workflow
+
+![n8n Workflow Overview](https://github.com/user-attachments/assets/495f2f46-8272-458e-96a5-f3e877920de7)
+
+![n8n Execution / Telegram](https://github.com/user-attachments/assets/cdcf51a6-0ce8-45e2-ae43-19e9a92b7c5a)
+
+The screenshots show:
+- Successful table reservation through Gradio
+- Successful cancellation with booking ID
+- Full n8n workflow (Webhook → IF → Telegram)
+- Telegram notification messages
+
+---
+
 ## 📦 Database Schema
 
 ```sql
@@ -182,12 +206,6 @@ CREATE TABLE reservations (
 
 ---
 
-## 📸 Screenshots
-
-Screenshots of the n8n workflow, Gradio UI, and Telegram notifications are available in the [`images/`](./images) folder.
-
----
-
 ## ✅ Requirements Covered
 
 | Requirement | Status |
@@ -213,4 +231,3 @@ Screenshots of the n8n workflow, Gradio UI, and Telegram notifications are avail
 - **n8n**
 - **Telegram** (notifications)
 - **Docker** (optional for n8n)
-```
