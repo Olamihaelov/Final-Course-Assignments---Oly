@@ -1,5 +1,5 @@
 {
-  "name": "Restaurant Webhook - reservation/cancellation",
+  "name": "Restaurant Webhook - Reservation & Cancellation",
   "nodes": [
     {
       "parameters": {
@@ -8,16 +8,16 @@
         "responseMode": "responseNode",
         "options": {}
       },
-      "id": "5915b508-ef0f-4617-a845-ff97934ce44c",
+      "id": "webhook-node",
       "name": "Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
         -736,
         64
-      ],
-      "webhookId": "restaurant"
+      ]
     },
+    
     {
       "parameters": {
         "conditions": {
@@ -28,7 +28,7 @@
             "version": 2
           },
           "conditions": [
-            {
+              {
               "id": "cond-event",
               "leftValue": "={{ $json.body.event }}",
               "rightValue": "reservation",
@@ -42,92 +42,75 @@
         },
         "options": {}
       },
-      "id": "2eb566f1-48d2-4b7b-b0fc-ecb2e094e755",
-      "name": "IF Event",
+      "id": "route-event",
+      "name": "Route Event",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -496,
+        -272,
         64
       ]
     },
     {
       "parameters": {
-        "respondWith": "json",
-        "responseBody": "={{ {\n  \"status\": \"ok\",\n  \"message\": \"Reservation received\",\n  \"id\": $json.body.id\n} }}",
-        "options": {
-          "responseCode": 200
-        }
+        "chatId": "6863761231",
+        "text": "=✅ **NEW RESERVATION RECEIVED!**\n\n📋 Booking Details:\n━━━━━━━━━━━━━━━━━\n👤 Name: {{ $json.body.customer_name }}\n📅 Date: {{ $json.body.date }}\n🕐 Time: {{ $json.body.time }}\n👥 Party Size: {{ $json.body.party_size }} guests\n📧 Contact: {{ $json.body.contact || \"Not provided\" }}\n🆔 Booking ID: #{{ $json.body.id }}\n⏱️ Timestamp: {{ $json.body.timestamp }}\n\n✔️ Status: CONFIRMED\n\nPlease prepare the table accordingly.",
+        "additionalFields": {}
       },
-      "id": "40760e25-e5b4-46f0-ada0-ecbc01a672da",
-      "name": "Respond Reservation",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.1,
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
       "position": [
         0,
         -128
-      ]
+      ],
+      "id": "notify-reservation",
+      "name": "Notify: Reservation",
+      "webhookId": "585816f7-ccc6-4502-96aa-e78aea145f04",
+      "credentials": {
+        "telegramApi": {
+          "id": "NvOezTqJ2HMhJeFk",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "6863761231",
+        "text": "=❌ **RESERVATION CANCELLED**\n\n📋 Cancellation Details:\n━━━━━━━━━━━━━━━━━\n🆔 Booking ID: #{{ $json.body.id }}\n👤 Name: {{ $json.body.customer_name }}\n📅 Date: {{ $json.body.date }}\n🕐 Time: {{ $json.body.time }}\n🪑 Party Size: {{ $json.body.party_size }}\n⏱️ Timestamp: {{ $json.body.timestamp }}\n\n⚠️ Status: CANCELLED\n\nPlease remove this reservation from the system.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        128
+      ],
+      "id": "notify-cancellation",
+      "name": "Notify: Cancellation",
+      "webhookId": "585816f7-ccc6-4502-96aa-e78aea145f04",
+      "credentials": {
+        "telegramApi": {
+          "id": "NvOezTqJ2HMhJeFk",
+          "name": "Telegram account"
+        }
+      }
     },
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={{ {\n  \"status\": \"ok\",\n  \"message\": \"Cancellation received\",\n  \"id\": $json.body.id\n} }}",
+        "responseBody": "={{ { status: 'ok', message: 'Reservation received and processed', booking_id: $json.body.id, event: $json.body.event, timestamp: $json.body.timestamp } }}",
         "options": {
           "responseCode": 200
         }
       },
-      "id": "c9a4da71-765a-4c3f-99a3-1af4739af8eb",
-      "name": "Respond Cancellation",
+      "id": "respond-success",
+      "name": "Respond: Success",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        -32,
-        176
+        272,
+        0
       ]
-    },
-    {
-      "parameters": {
-        "chatId": "8856083943",
-        "text": "=✅ New Reservation Received!\n\nName: {{ $json.body.customer_name }}\nDate: {{ $json.body.date }}\nTime: {{ $json.body.time }}\nParty size: {{ $json.body.party_size }}\nBooking ID: {{ $json.body.id }}\nContact: {{ $json.body.contact || \"Not provided\" }}",
-        "additionalFields": {}
-      },
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
-      "position": [
-        -272,
-        -96
-      ],
-      "id": "aa4dfb32-dea4-48bf-8098-36d01c0e64bb",
-      "name": "New Reservation",
-      "webhookId": "585816f7-ccc6-4502-96aa-e78aea145f04",
-      "credentials": {
-        "telegramApi": {
-          "id": "NvOezTqJ2HMhJeFk",
-          "name": "Telegram account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "chatId": "8856083943",
-        "text": "=❌ Reservation Cancelled\n\nBooking ID: {{ $json.body.id }} has been cancelled.\n\nPlease update the system accordingly.",
-        "additionalFields": {}
-      },
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
-      "position": [
-        -256,
-        176
-      ],
-      "id": "acb44e5c-21dd-4f5a-9ec4-ab5703773786",
-      "name": "Cancel Reservation",
-      "webhookId": "585816f7-ccc6-4502-96aa-e78aea145f04",
-      "credentials": {
-        "telegramApi": {
-          "id": "NvOezTqJ2HMhJeFk",
-          "name": "Telegram account"
-        }
-      }
     }
   ],
   "pinData": {},
@@ -136,52 +119,47 @@
       "main": [
         [
           {
-            "node": "IF Event",
+            "node": "Route Event",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "IF Event": {
+    "Route Event": {
       "main": [
         [
           {
-            "node": "New Reservation",
+            "node": "Notify: Reservation",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Cancel Reservation",
+            "node": "Notify: Cancellation",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Respond Cancellation": {
-      "main": [
-        []
-      ]
-    },
-    "New Reservation": {
+    "Notify: Reservation": {
       "main": [
         [
           {
-            "node": "Respond Reservation",
+            "node": "Respond: Success",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Cancel Reservation": {
+    "Notify: Cancellation": {
       "main": [
         [
           {
-            "node": "Respond Cancellation",
+            "node": "Respond: Success",
             "type": "main",
             "index": 0
           }
@@ -194,11 +172,10 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "5387f4af-af71-4109-b350-bdcd78f3a24b",
+  "versionId": "1.0",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "4dd753d494c10aee1f51d94a81b047948ba0c4d30c3e6e857d892738b4b86e99"
+    "templateCredsSetupCompleted": true
   },
-  "id": "btUaTQaTeAgotDgd",
-  "tags": []
+  "id": "restaurant-workflow-v1",
+  "tags": ["restaurant", "reservation", "n8n"]
 }
