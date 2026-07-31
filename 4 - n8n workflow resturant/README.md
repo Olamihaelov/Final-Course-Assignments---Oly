@@ -152,8 +152,7 @@ What are your opening hours?
 
 ![n8n Workflow Overview](https://github.com/user-attachments/assets/495f2f46-8272-458e-96a5-f3e877920de7)
 
-![Telegram](https://github.com/user-attachments/assets/f9cd873f-baa1-4513-a820-6dde09e58294)
-
+![Telegram](https://github.com/user-attachments/assets/95a8b086-c139-4994-adce-454becddd114)
 
 The screenshots show:
 - Successful table reservation through Gradio
