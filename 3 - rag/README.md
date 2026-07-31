@@ -36,7 +36,7 @@ LLM Answer + Retrieved Context
 - Create and persist embeddings in **ChromaDB**
 - Ask questions about the document
 - Display both the **LLM answer** and the **retrieved source chunks**
-- Gradio chat interface (optional UI)
+- Gradio chat interface
 
 ---
 
@@ -47,7 +47,7 @@ LLM Answer + Retrieved Context
 ├── RAG_docx.py              # Main RAG application
 ├── rag_full_content.docx    # Source Word document
 ├── requirements.txt
-├── images/                  # Screenshots of questions, answers & context
+├── images/                  # Screenshots
 └── README.md
 ```
 
@@ -59,19 +59,6 @@ LLM Answer + Retrieved Context
 
 ```bash
 pip install -r requirements.txt
-```
-
-Typical packages:
-
-```
-langchain
-langchain-community
-langchain-openai
-langchain-text-splitters
-chromadb
-docx2txt
-python-dotenv
-gradio
 ```
 
 ### 2. Configure environment
@@ -109,8 +96,6 @@ python RAG_docx.py
 
 ## ❓ Example Questions
 
-The system is tested with at least 5 relevant questions, for example:
-
 1. What is the main topic of this document?
 2. Summarize the main points.
 3. Who are the key people or characters mentioned?
@@ -125,7 +110,37 @@ For each question the output includes:
 
 ## 📸 Screenshots
 
-Screenshots showing the questions, answers, and retrieved context are available in the [`images/`](./images) folder.
+### Gradio UI – Document Upload & Chat
+
+![Gradio UI 1](https://github.com/user-attachments/assets/334de5f1-ac5f-4ce3-b656-3c77d0baf6a4)
+
+![Gradio UI 2](https://github.com/user-attachments/assets/1a34e6e0-d69f-48c5-b9c8-2600128a5f15)
+
+![Gradio UI 3](https://github.com/user-attachments/assets/75ab4b7e-266d-41b3-bff8-a13a2efdc78b)
+
+![Gradio UI 4](https://github.com/user-attachments/assets/16bd6fbf-f2b2-449c-8912-c83b813d4787)
+
+![Gradio UI 5](https://github.com/user-attachments/assets/4dbbaeb5-69ae-4fa4-860a-35af16134220)
+
+![Gradio UI 6](https://github.com/user-attachments/assets/4091b60d-95b0-4d49-8da7-908525b7d34b)
+
+### Evaluation – Questions, Answers & Retrieved Context
+
+![Evaluation 1](https://github.com/user-attachments/assets/621d66b6-1c6d-4528-93f8-eab1c5d64722)
+
+![Evaluation 2](https://github.com/user-attachments/assets/3d62be03-c391-4fa6-b126-982a38e8e8a8)
+
+![Evaluation 3](https://github.com/user-attachments/assets/c8731a6e-6099-4be1-969c-8f5fef0d5eb1)
+
+![Evaluation 4](https://github.com/user-attachments/assets/c2a427b1-4d6a-4969-9c4f-29ded258e4a1)
+
+![Evaluation 5](https://github.com/user-attachments/assets/0ef70d9e-1dbe-46f3-89ff-3ca6859182da)
+
+The screenshots show:
+- Document upload in Gradio
+- Multiple questions asked about the document
+- LLM-generated answers
+- Retrieved source chunks displayed with each answer
 
 ---
 
@@ -134,11 +149,12 @@ Screenshots showing the questions, answers, and retrieved context are available 
 | Requirement | Status |
 |-------------|--------|
 | Load `.docx` document | ✅ |
-| Split into chunks (with count printed) | ✅ |
+| Split into chunks | ✅ |
 | Store embeddings in ChromaDB | ✅ |
 | Answer at least 5 questions with LLM | ✅ |
 | Print retrieved context chunks | ✅ |
 | Questions are relevant / non-trivial | ✅ |
+| Gradio UI | ✅ |
 
 ---
 
@@ -148,6 +164,5 @@ Screenshots showing the questions, answers, and retrieved context are available 
 - **OpenAI** (Embeddings + Chat)
 - **ChromaDB**
 - **Docx2txtLoader**
-- **Gradio** (optional UI)
+- **Gradio**
 - **python-dotenv**
-```
