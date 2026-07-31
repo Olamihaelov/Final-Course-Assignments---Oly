@@ -154,6 +154,7 @@ What are your opening hours?
 
 ![Telegram](https://github.com/user-attachments/assets/f9cd873f-baa1-4513-a820-6dde09e58294)
 
+
 The screenshots show:
 - Successful table reservation through Gradio
 - Successful cancellation with booking ID
