@@ -58,7 +58,7 @@ This is what allows TF-IDF to distinguish between documents.
 
 A sentence embedding is a single vector that represents the meaning of a whole sentence.
 
-One-hot encoding is different — each word gets its own position in the vector, filled with zeros except for one 1. 
+One-hot encoding is different - each word gets its own position in the vector, filled with zeros except for one 1. 
 So similar words like "happy" and "joyful" have no connection at all.
 
 The advantage of embeddings is that you can measure similarity between sentences using cosine similarity. 
@@ -83,7 +83,7 @@ This works well because cosine focuses on direction, rather than the raw length 
 ## Answer:
 
 A SQL query like `WHERE description LIKE '%pizza%'` looks for exact words only.
-It doesn’t understand meaning, so it can miss related texts that use different wording.
+It doesn't understand meaning, so it can miss related texts that use different wording.
 
 Vector indexing works differently: it turns text into vectors that represent meaning,
 and then compares vectors by semantic similarity.
@@ -108,8 +108,11 @@ Because of that, the answer is usually more accurate and there are fewer halluci
 
 ### 8 - Describe the 3 main steps of a RAG pipeline in the correct order. Be clear about what happens at ingestion time (when you load documents) vs query time (when a user asks a question).
 
-## Answer:_____
-At ingestion time, you split the documents into chunks, turn those chunks into embeddings, and store them in a vector database. At query time, you embed the question, find the closest chunks, and let the model answer using those chunks as context.
+## Answer:
+
+At ingestion time, you split the documents into chunks, turn those chunks into embeddings, and store them in a vector database
+
+At query time, you embed the question, find the closest chunks, and let the model answer using those chunks as context
 
 ----
 
@@ -117,15 +120,19 @@ At ingestion time, you split the documents into chunks, turn those chunks into e
 
 ### 9 - What is the difference between a Docker image and a Docker container? Use an analogy to explain.
 
-## Answer:_____
-A Docker image is like a recipe or blueprint. It contains the setup for an app. A container is the live thing you run from that recipe, so it is the actual working instance.
+## Answer:
+a docker image can be compared to a recipe - it has everything needed to create an object, but it isn't running yet.
+
+And a Docker container can be compared to a cake, which was created by using the previous recipe, it's the working version of the image.
 
 ----
 
 ### 10 - What is the difference between a simple LLM chatbot and an AI agent with tools? Give one concrete example of a "tool" and explain why it makes the agent more capable.
 
-## Answer:_____
-A simple chatbot mostly just writes text. An agent can also use tools, such as a web search or a calculator, to get live information and do real actions. That makes it much more useful than a chatbot that only talks.
+## Answer:
+A simple LLM chatbot simply creates text using its training data. It does not have the capability to get any new information or do anything outside of its training.
+
+However, an AI agent with tools has the ability to utilize other functions such as a web search function, a calculator or a database query.
 
 ----
 
@@ -133,28 +140,31 @@ A simple chatbot mostly just writes text. An agent can also use tools, such as a
 
 ### 11 - What is MCP (Model Context Protocol)? What problem does it solve for AI coding assistants like GitHub Copilot? Name two examples of things an MCP server might expose to an AI assistant.
 
-## Answer:_____
-MCP is a standard for giving AI assistants access to outside tools and data. It solves the problem of models not knowing how to connect to files, databases, or GitHub in a consistent way. Two examples are a file server and a database query server.
+## Answer:
+MCP is a standard that lets AI assistants connect to external tools and data in a consistent way.
+
+Without it, every tool would need custom code. With MCP, Copilot can access different systems using the same protocol.
+
+Two examples of MCP servers:
+
+1. A file system server that lets the AI read and write files in your project
+
+2. A GitHub server that lets the AI search issues and create pull requests
 
 ----
 
 ### 12 - What are Agent Skills in the context of AI coding assistants? How are they different from just writing instructions in a plain prompt? Show a minimal example of what a skill's .md metadata block might look like.
 
-## Answer:_____
-Agent Skills are reusable pieces of guidance that help an assistant know when to use a certain capability. They are more structured than a plain prompt, so the assistant can choose the right behavior automatically. A simple example looks like this:
+## Answer:
+Agent Skills are structured, reusable instructions that tell an AI when and how to use specific abilities.
 
-```
-name: pet-store-assistant
-description: Help with pet store inventory, orders, and customer support questions.
-file: skills/pet-store-assistant/SKILL.md
-```
+Unlike a plain prompt, a Skill has metadata that lets the AI automatically decide when to activate it.
 
 ```
 <skill>
-	<name>pet-store-assistant</name>
-	<description>Help with pet store inventory, orders, and customer support questions.
-	Use when the user asks "How do I check stock?"
-	or "What is the status of this order?"</description>
-	<file>path/to/skills/pet-store-assistant/SKILL.md</file>
+  <name>pet-store-assistant</name>
+  <description>Help with pet store inventory, orders, and customer support.
+  Use when the user asks about stock levels, order status, or customer questions.</description>
+  <file>path/to/skills/pet-store-assistant/SKILL.md</file>
 </skill>
 ```
