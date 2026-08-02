@@ -110,6 +110,18 @@ For each question the output includes:
 
 ## 📸 Screenshots
 
+### Evaluation – Questions, Answers & Retrieved Context
+
+![Evaluation 1](https://github.com/user-attachments/assets/f6469904-35b0-432e-814a-c3dad299a9ed)
+
+![Evaluation 2](https://github.com/user-attachments/assets/145d2f2f-2b86-4efe-83ce-e1c19a63f4bf)
+
+![Evaluation 3](https://github.com/user-attachments/assets/ebf05e16-095d-4f20-925c-ab2e9730e5ef)
+
+![Evaluation 4](https://github.com/user-attachments/assets/0b996326-368b-4cc2-8b59-3462b6c21440)
+
+![Evaluation 5](https://github.com/user-attachments/assets/127f2e62-813a-4341-b25b-c77b990a2f8e)
+
 ### Gradio UI – Document Upload & Chat
 
 ![Gradio UI 1](https://github.com/user-attachments/assets/334de5f1-ac5f-4ce3-b656-3c77d0baf6a4)
@@ -124,17 +136,6 @@ For each question the output includes:
 
 ![Gradio UI 6](https://github.com/user-attachments/assets/4091b60d-95b0-4d49-8da7-908525b7d34b)
 
-### Evaluation – Questions, Answers & Retrieved Context
-
-![Evaluation 1](https://github.com/user-attachments/assets/621d66b6-1c6d-4528-93f8-eab1c5d64722)
-
-![Evaluation 2](https://github.com/user-attachments/assets/3d62be03-c391-4fa6-b126-982a38e8e8a8)
-
-![Evaluation 3](https://github.com/user-attachments/assets/c8731a6e-6099-4be1-969c-8f5fef0d5eb1)
-
-![Evaluation 4](https://github.com/user-attachments/assets/c2a427b1-4d6a-4969-9c4f-29ded258e4a1)
-
-![Evaluation 5](https://github.com/user-attachments/assets/0ef70d9e-1dbe-46f3-89ff-3ca6859182da)
 
 The screenshots show:
 - Document upload in Gradio
