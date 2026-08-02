@@ -112,32 +112,31 @@ For each question the output includes:
 
 ### Gradio UI – Document Upload & Chat
 
-![Evaluation 1](https://github.com/user-attachments/assets/f6469904-35b0-432e-814a-c3dad299a9ed)
+![Gradio 1](https://github.com/user-attachments/assets/f6469904-35b0-432e-814a-c3dad299a9ed)
 
-![Evaluation 2](https://github.com/user-attachments/assets/145d2f2f-2b86-4efe-83ce-e1c19a63f4bf)
+![Gradio 2](https://github.com/user-attachments/assets/145d2f2f-2b86-4efe-83ce-e1c19a63f4bf)
 
-![Evaluation 3](https://github.com/user-attachments/assets/ebf05e16-095d-4f20-925c-ab2e9730e5ef)
+![Gradio 3](https://github.com/user-attachments/assets/ebf05e16-095d-4f20-925c-ab2e9730e5ef)
 
-![Evaluation 4](https://github.com/user-attachments/assets/0b996326-368b-4cc2-8b59-3462b6c21440)
+![Gradio 4](https://github.com/user-attachments/assets/0b996326-368b-4cc2-8b59-3462b6c21440)
 
-![Evaluation 5](https://github.com/user-attachments/assets/127f2e62-813a-4341-b25b-c77b990a2f8e)
+![Gradio 5](https://github.com/user-attachments/assets/127f2e62-813a-4341-b25b-c77b990a2f8e)
 
-![Evaluation 6](https://github.com/user-attachments/assets/ad120848-25e3-4f25-83b0-832ed208d86b)
 
 ### Evaluation – Questions, Answers & Retrieved Context
 
-![Gradio UI 1](https://github.com/user-attachments/assets/334de5f1-ac5f-4ce3-b656-3c77d0baf6a4)
 
-![Gradio UI 2](https://github.com/user-attachments/assets/1a34e6e0-d69f-48c5-b9c8-2600128a5f15)
+![Evaluation 1](https://github.com/user-attachments/assets/1a34e6e0-d69f-48c5-b9c8-2600128a5f15)
 
-![Gradio UI 3](https://github.com/user-attachments/assets/75ab4b7e-266d-41b3-bff8-a13a2efdc78b)
+![Evaluation 2](https://github.com/user-attachments/assets/75ab4b7e-266d-41b3-bff8-a13a2efdc78b)
 
-![Gradio UI 4](https://github.com/user-attachments/assets/16bd6fbf-f2b2-449c-8912-c83b813d4787)
+![Evaluation 3](https://github.com/user-attachments/assets/16bd6fbf-f2b2-449c-8912-c83b813d4787)
 
-![Gradio UI 5](https://github.com/user-attachments/assets/4dbbaeb5-69ae-4fa4-860a-35af16134220)
+![Evaluation 4](https://github.com/user-attachments/assets/4dbbaeb5-69ae-4fa4-860a-35af16134220)
 
-![Gradio UI 6](https://github.com/user-attachments/assets/4091b60d-95b0-4d49-8da7-908525b7d34b)
+![Evaluation 5](https://github.com/user-attachments/assets/4091b60d-95b0-4d49-8da7-908525b7d34b)
 
+![Evaluation 6](https://github.com/user-attachments/assets/334de5f1-ac5f-4ce3-b656-3c77d0baf6a4)
 
 The screenshots show:
 - Document upload in Gradio
