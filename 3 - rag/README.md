@@ -1,6 +1,7 @@
 # 📄 RAG with Word Document
 
-**Assignment 3 – Retrieval-Augmented Generation (20 pts)**
+**Assignment 3 – Retrieval-Augmented Generation (20 pts)**  
+Official page: [https://pythonai200425.github.io/finals/03-rag-word.html](https://pythonai200425.github.io/finals/03-rag-word.html)
 
 A complete RAG pipeline that loads a `.docx` Word document, splits it into chunks, stores embeddings in ChromaDB, and answers questions about the document’s content using an LLM.
 
@@ -15,28 +16,31 @@ A complete RAG pipeline that loads a `.docx` Word document, splits it into chunk
 Docx2txtLoader
     │
     ▼
-RecursiveCharacterTextSplitter  →  Chunks
+RecursiveCharacterTextSplitter
+    (chunk_size=500, chunk_overlap=60)
     │
     ▼
 OpenAI Embeddings + ChromaDB
     │
     ▼
-Retriever (top-k chunks)
+Retriever (k=3)
     │
     ▼
-LLM Answer + Retrieved Context
+RetrievalQA / LLM Answer + Retrieved Context
 ```
 
 ---
 
 ## ✨ Features
 
-- Load a Word (`.docx`) document
-- Split text into overlapping chunks
+- Load a Word (`.docx`) document with `Docx2txtLoader`
+- Split text with `RecursiveCharacterTextSplitter`  
+  (`chunk_size=500`, `chunk_overlap=60`)
 - Create and persist embeddings in **ChromaDB**
-- Ask questions about the document
+- Retrieve top **k=3** relevant chunks
+- Generate answers with LLM (via `RetrievalQA` / custom chain)
 - Display both the **LLM answer** and the **retrieved source chunks**
-- Gradio chat interface
+- Gradio chat interface for interactive Q&A
 
 ---
 
@@ -61,6 +65,18 @@ LLM Answer + Retrieved Context
 pip install -r requirements.txt
 ```
 
+Typical packages:
+```
+langchain
+langchain-community
+langchain-openai
+langchain-text-splitters
+chromadb
+docx2txt
+python-dotenv
+gradio
+```
+
 ### 2. Configure environment
 
 Create a `.env` file:
@@ -82,14 +98,16 @@ python RAG_docx.py
 ### Step 1–3: Load, Chunk & Index
 
 1. Load the `.docx` file with `Docx2txtLoader`
-2. Split the text with `RecursiveCharacterTextSplitter`
-3. Create embeddings and store them in ChromaDB
+2. Split the text with `RecursiveCharacterTextSplitter`  
+   - `chunk_size=500`  
+   - `chunk_overlap=60`
+3. Create embeddings (`OpenAIEmbeddings`) and store them in ChromaDB
 
 ### Step 4–5: Retrieve & Generate
 
 1. Embed the user question
-2. Retrieve the most relevant chunks
-3. Pass the chunks + question to the LLM
+2. Retrieve the top **k=3** most relevant chunks
+3. Pass the chunks + question to the LLM (via `RetrievalQA` or equivalent chain)
 4. Return the answer **together with the source context**
 
 ---
@@ -104,7 +122,7 @@ python RAG_docx.py
 
 For each question the output includes:
 - The **LLM answer**
-- The **retrieved context chunks**
+- The **retrieved context chunks** (top 3)
 
 ---
 
@@ -122,9 +140,7 @@ For each question the output includes:
 
 ![Gradio 5](https://github.com/user-attachments/assets/127f2e62-813a-4341-b25b-c77b990a2f8e)
 
-
 ### Evaluation – Questions, Answers & Retrieved Context
-
 
 ![Evaluation 1](https://github.com/user-attachments/assets/1a34e6e0-d69f-48c5-b9c8-2600128a5f15)
 
@@ -146,13 +162,27 @@ The screenshots show:
 
 ---
 
+## 📊 Grading Criteria (20 pts)
+
+| Criterion | Points | Status |
+|-----------|--------|--------|
+| `.docx` loaded and split into chunks (print chunk count) | 4 | ✅ |
+| Embeddings stored in ChromaDB | 4 | ✅ |
+| 5 questions answered with LLM | 6 | ✅ |
+| Retrieved context chunks printed alongside answers | 4 | ✅ |
+| Questions are relevant and non-trivial | 2 | ✅ |
+| **Total** | **20** | ✅ |
+
+---
+
 ## ✅ Requirements Covered
 
 | Requirement | Status |
 |-------------|--------|
 | Load `.docx` document | ✅ |
-| Split into chunks | ✅ |
+| `chunk_size=500`, `chunk_overlap=60` | ✅ |
 | Store embeddings in ChromaDB | ✅ |
+| Retriever with `k=3` | ✅ |
 | Answer at least 5 questions with LLM | ✅ |
 | Print retrieved context chunks | ✅ |
 | Questions are relevant / non-trivial | ✅ |
@@ -162,9 +192,8 @@ The screenshots show:
 
 ## 🛠️ Tech Stack
 
-- **LangChain**
+- **LangChain** (`Docx2txtLoader`, `RecursiveCharacterTextSplitter`, `RetrievalQA`)
 - **OpenAI** (Embeddings + Chat)
 - **ChromaDB**
-- **Docx2txtLoader**
 - **Gradio**
 - **python-dotenv**
