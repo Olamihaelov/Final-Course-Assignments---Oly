@@ -110,7 +110,7 @@ For each question the output includes:
 
 ## 📸 Screenshots
 
-### Evaluation – Questions, Answers & Retrieved Context
+### Gradio UI – Document Upload & Chat
 
 ![Evaluation 1](https://github.com/user-attachments/assets/f6469904-35b0-432e-814a-c3dad299a9ed)
 
@@ -122,7 +122,7 @@ For each question the output includes:
 
 ![Evaluation 5](https://github.com/user-attachments/assets/127f2e62-813a-4341-b25b-c77b990a2f8e)
 
-### Gradio UI – Document Upload & Chat
+### Evaluation – Questions, Answers & Retrieved Context
 
 ![Gradio UI 1](https://github.com/user-attachments/assets/334de5f1-ac5f-4ce3-b656-3c77d0baf6a4)
 
