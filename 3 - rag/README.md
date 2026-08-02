@@ -122,6 +122,8 @@ For each question the output includes:
 
 ![Evaluation 5](https://github.com/user-attachments/assets/127f2e62-813a-4341-b25b-c77b990a2f8e)
 
+![Evaluation 6](https://github.com/user-attachments/assets/ad120848-25e3-4f25-83b0-832ed208d86b)
+
 ### Evaluation – Questions, Answers & Retrieved Context
 
 ![Gradio UI 1](https://github.com/user-attachments/assets/334de5f1-ac5f-4ce3-b656-3c77d0baf6a4)
